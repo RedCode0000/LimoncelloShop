@@ -1,0 +1,9 @@
+<div class="flex">
+    <h1>Bestellen</h1>
+    <ul>
+        <li *ngFor="let limoncelloItem of allLimoncello">
+            <app-limoncello-info [limoncello]="limoncelloItem" />
+        </li>
+    </ul>
+    <span class="example-spacer"></span>
+</div>

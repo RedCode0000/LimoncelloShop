@@ -1,0 +1,10 @@
+<div [routerLink]="['/limoncello-details', limoncello.id]" class="container">
+    <div class="picture">
+        <img [src]="limoncello.imageFileName" alt="limoncello">
+    </div>
+    <div class="limoncelloInfo">
+        <h1 class="limoncelloName">{{limoncello.name}}</h1>
+        <h1 class="price">€{{limoncello.price | number : '1.2-2' : 'nl'}} </h1>
+        <span class="stock">{{limoncello.stock}} in voorraad</span>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    margin: 13px;
+    flex-direction: column;
+
+    .picture {
+        width: 270px;
+        height: 270px;
+        border: 2px solid;
+
+        img {
+            width: 270px;
+            height: 270px;
+        }
+    }
+
+    .limoncelloInfo {
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+
+        .limoncelloName {
+            font-size: 18px;
+            width: 270px;
+            margin-bottom: 5px;
+            padding-bottom: 9px;
+            overflow: auto;
+            white-space: nowrap;
+        }
+
+        .price {
+            padding-left: 20px;
+        }
+    }
+}

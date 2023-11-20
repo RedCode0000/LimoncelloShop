@@ -1,0 +1,71 @@
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+
+img {
+    width: 360px;
+    height: 360px;
+    border: 2px solid;
+}
+
+
+.limoncelloItemContainer {
+    height: 360px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+
+    .limoncelloName {
+        font-size: 25px;
+        width: 450px;
+        overflow: auto;
+        white-space: nowrap;
+    }
+
+    .price {
+        padding-left: 10px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .example-spacer {
+        flex: 1 1 auto;
+    }
+
+
+    .stock {
+        padding-left: 10px;
+        font-size: 12px;
+    }
+
+    .flex2 {
+        display: flex;
+
+
+        .order {
+            padding: 10px 50px;
+            border: 2px solid;
+            border-radius: 5px;
+        }
+
+        .example-spacer2 {
+            flex: 1 1 auto;
+        }
+
+        .backButton {
+            padding: 10px 40px;
+            border: 2px solid;
+            border-radius: 5px;
+        }
+    }
+
+    .backButton:hover,
+    .order:hover {
+        background-color: lightgrey;
+        cursor: pointer;
+    }
+}

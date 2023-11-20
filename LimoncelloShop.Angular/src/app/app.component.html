@@ -1,0 +1,53 @@
+<div class="repairContainer">
+  <mat-toolbar color="primary">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Lemonbro's</span>
+    <span class="example-spacer"></span>
+    <!-- <a mat-raised-button *ngIf="getRole() == 'Admin'" [routerLink]="['/register-employee']"
+      class="registeremployee-button">Register Employee</a> -->
+    <!-- <button *ngIf="loggedin(); else login" mat-raised-button (click)="logout()">Log out</button> -->
+    <!-- <div *ngIf="loggedin()" style="margin-left: 20px;">
+      {{getName()}}
+    </div> -->
+    <button mat-icon-button matBadge="15" matBadgeColor="warn" [routerLink]="['shoppingcart']">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+    <mat-icon matBadge="15" matBadgeColor="warn">shopping_cart</mat-icon>
+  </mat-toolbar>
+  <mat-sidenav-container class="sideNavigationRepairShop">
+    <mat-sidenav #sidenav class="sidebar" mode="over" fixedTopGap="64px">
+      <mat-nav-list>
+        <a mat-list-item [routerLink]="['']">Home</a>
+        <a mat-list-item [routerLink]="['about']">Over ons</a>
+        <a mat-list-item [routerLink]="['limoncello']">Bestellen</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+      <div id="cookieDeclaration">
+        <h2>Cookieverklaring: Functionele Cookies voor een Verbeterde Gebruikerservaring</h2>
+        <p>
+
+          Deze website maakt gebruik van functionele cookies om een betere gebruikerservaring te bieden. Functionele
+          cookies
+          zijn noodzakelijk voor het goed functioneren van de website. Ze stellen ons in staat om bepaalde voorkeuren
+          van
+          gebruikers op te slaan, zoals bijvoorbeeld winkelwageninhoud, waardoor je een naadloze en efficiënte ervaring
+          hebt
+          tijdens je bezoek.
+
+          Functionele cookies slaan geen persoonlijke informatie op en worden uitsluitend gebruikt om de functionaliteit
+          van
+          de website te verbeteren.</p>
+        <button mat-raised-button (click)="closeCookieDeclaration()">Ik begrijp het</button>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+
+<!-- <ng-template #login>
+  <button mat-raised-button [routerLink]="['login']">Login</button>
+</ng-template> -->

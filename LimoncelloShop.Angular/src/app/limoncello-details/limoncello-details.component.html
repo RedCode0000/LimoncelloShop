@@ -1,0 +1,19 @@
+<div class="flex">
+    <img [src]="limoncello.imageFileName" alt="limoncello">
+    <div class="limoncelloItemContainer">
+        <div>
+            <h1 class="limoncelloName">{{limoncello.name}}</h1>
+            <p class="description">{{limoncello.description}}</p>
+        </div>
+        <div class="example-spacer"></div>
+        <div>
+            <p class="price">€{{limoncello.price | number : '1.2-2' : 'nl'}} </p>
+            <div class="flex2">
+                <button class="order" (click)="createBasketItem()">Bestellen</button>
+                <span class="example-spacer2"></span>
+                <button class="backButton" [routerLink]="['/limoncello']">Terug</button>
+            </div>
+            <p class="stock">{{ getStockText() }}</p>
+        </div>
+    </div>
+</div>

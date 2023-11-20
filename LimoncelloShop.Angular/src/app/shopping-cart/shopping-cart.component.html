@@ -1,0 +1,9 @@
+<div class="flex">
+    <h1>Winkelmand</h1>
+    <ul>
+        <li *ngFor="let basketItemEntity of allBasketItems">
+            <app-shopping-cart-info [basketItem]="basketItemEntity" />
+        </li>
+
+    </ul>
+</div>

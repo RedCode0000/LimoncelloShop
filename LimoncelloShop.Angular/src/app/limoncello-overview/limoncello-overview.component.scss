@@ -1,0 +1,42 @@
+.flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 30px;
+    color: yellow;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    text-align: center;
+}
+
+// .example-spacer {
+//     display: inline-block;
+//     height: 100px;
+// }
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    padding: 0;
+    list-style: none;
+    justify-content: flex-start;
+    align-content: flex-end;
+    width: 60%;
+
+    li {
+        width: 300px;
+        height: 450px;
+        border-style: solid;
+        margin: 10px;
+        box-sizing: border-box;
+
+    }
+
+    li:hover {
+        cursor: pointer;
+    }
+}
