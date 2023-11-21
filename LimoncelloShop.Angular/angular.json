@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "LimoncelloShop:build:production"
+              "buildTarget": "LimoncelloShop:build:production"
             },
             "development": {
-              "browserTarget": "LimoncelloShop:build:development"
+              "buildTarget": "LimoncelloShop:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -76,7 +76,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "LimoncelloShop:build"
+            "buildTarget": "LimoncelloShop:build"
           }
         },
         "test": {
