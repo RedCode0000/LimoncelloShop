@@ -11,10 +11,9 @@
     <!-- <div *ngIf="loggedin()" style="margin-left: 20px;">
       {{getName()}}
     </div> -->
-    <button mat-icon-button matBadge="15" matBadgeColor="warn" [routerLink]="['shoppingcart']">
-      <mat-icon>shopping_cart</mat-icon>
+    <button mat-icon-button [routerLink]="['shoppingcart']">
+      <mat-icon matBadge="15" matBadgeColor="warn">shopping_cart</mat-icon>
     </button>
-    <mat-icon matBadge="15" matBadgeColor="warn">shopping_cart</mat-icon>
   </mat-toolbar>
   <mat-sidenav-container class="sideNavigationRepairShop">
     <mat-sidenav #sidenav class="sidebar" mode="over" fixedTopGap="64px">

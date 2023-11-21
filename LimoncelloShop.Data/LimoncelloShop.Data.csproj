@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LemoncelloShop.Domain\LimoncelloShop.Domain.csproj" />
+    <ProjectReference Include="..\LimoncelloShop.Domain\LimoncelloShop.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
