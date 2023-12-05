@@ -101,10 +101,21 @@ namespace LimoncelloShop.Business.Services
             }
         }
 
-        public Basket? GetBasketByCookie(string key)
+        public Basket? GetBasketByCookie(bool isInRole, string? key = null, string email = "")
         {
-            var a = _repository.GetAll().FirstOrDefault(x => x.Cookie == key);
-            return a;
+            //if (basket == null || (isInRole && basket.User.Email != email && key == null))
+            //    return null;
+            Basket basket;
+            if (email != "" && isInRole)
+            {
+                basket = _repository.GetAll().Include(x => x.User).FirstOrDefault(x => x.User.Email == email);
+            }
+            else
+            {
+                basket = _repository.GetAll().FirstOrDefault(x => x.Cookie == key);
+            }
+
+            return basket;
         }
 
         public async Task EditBasket(BasketItem basketItem)

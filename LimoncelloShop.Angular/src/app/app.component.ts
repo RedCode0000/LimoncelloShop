@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { CookieServiceAPI } from './services/cookie-service-api.service';
+import { ShoppingCartService } from './services/shopping-cart.service';
+import { BasketService } from './services/basket.service';
 
 @Component({
   selector: 'app-root',
@@ -13,10 +15,18 @@ export class AppComponent {
 
   private cookie_name = '';
   private all_cookies: any = '';
-  badgeValue: number = 5;
+  totalNumberObservable = this.shoppingCartService.itemCount$;
+  totalNumber: number = 0;
+  hidden: boolean = false;
 
-  constructor(private router: Router, private cookieService: CookieService, private cookieServiceAPI: CookieServiceAPI) { }
+  constructor(private basketService: BasketService, private shoppingCartService: ShoppingCartService, private router: Router, private cookieService: CookieService, private cookieServiceAPI: CookieServiceAPI) { }
 
+  ngOnInit(): void {
+    // this.cookie_name = this.cookieService.get('name');
+    // this.all_cookies = this.cookieService.getAll();  // get all cookies object
+    this.getCookie();
+    this.updateCart();
+  }
   getName() {
     return localStorage.getItem('firstName') + ' ' + localStorage.getItem('lastName');
   }
@@ -78,13 +88,18 @@ export class AppComponent {
     document.getElementById("cookieDeclaration")!.style.bottom = "-200px";
   }
 
-
-  ngOnInit(): void {
-    // this.cookie_name = this.cookieService.get('name');
-    // this.all_cookies = this.cookieService.getAll();  // get all cookies object
-    this.getCookie();
+  updateCart(): void {
+    this.shoppingCartService.updateItemCount();
+    this.totalNumberObservable.subscribe(x => this.totalNumber = x);
+    if (this.totalNumber > 0) {
+      this.hidden = false;
+    }
+    else {
+      this.hidden = true;
+    }
   }
 }
+
 
 
 

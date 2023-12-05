@@ -12,8 +12,10 @@
       {{getName()}}
     </div> -->
     <button mat-icon-button [routerLink]="['shoppingcart']">
-      <mat-icon matBadge="15" matBadgeColor="warn">shopping_cart</mat-icon>
+      <mat-icon [matBadge]="totalNumber" [matBadgeHidden]="hidden" matBadgeColor="warn">shopping_cart</mat-icon>
     </button>
+
+
   </mat-toolbar>
   <mat-sidenav-container class="sideNavigationRepairShop">
     <mat-sidenav #sidenav class="sidebar" mode="over" fixedTopGap="64px">

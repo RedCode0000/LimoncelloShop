@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CookieServiceAPI } from './cookie-service-api.service';
+import { ShoppingCartService } from './shopping-cart.service';
 
-describe('CookieServiceAPIService', () => {
-  let service: CookieServiceAPI;
+describe('ShoppingCartService', () => {
+  let service: ShoppingCartService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(CookieServiceAPI);
+    service = TestBed.inject(ShoppingCartService);
   });
 
   it('should be created', () => {

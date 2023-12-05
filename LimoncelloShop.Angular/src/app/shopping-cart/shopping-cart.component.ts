@@ -25,8 +25,6 @@ export class ShoppingCartComponent {
     this.basketItemService.getAllBasketItems(cookieValue).subscribe(
       (x) => {
         this.allBasketItems = x.map(t => ToBasketItem(t));
-        console.log(x);
-        console.log(this.allBasketItems);
       }
     );
   }

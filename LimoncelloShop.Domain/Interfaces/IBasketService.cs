@@ -6,7 +6,7 @@ namespace LimoncelloShop.Domain.Interfaces
     {
         Basket? GetBasket(int id);
 
-        Basket? GetBasketByCookie(string key);
+        Basket? GetBasketByCookie(bool isInRole, string? key = null, string email = "");
 
         Task EditBasket(BasketItem basketItem);
 

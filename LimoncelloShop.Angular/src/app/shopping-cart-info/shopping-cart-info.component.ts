@@ -2,6 +2,9 @@ import { Component, Input } from '@angular/core';
 import BasketItem from '../models/basketItem';
 import { BasketItemService } from '../services/basket-item.service';
 import BasketItemUpdate from '../models/basketItemUpdate';
+import { ShoppingCartService } from '../services/shopping-cart.service';
+import { BasketService } from '../services/basket.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-shopping-cart-info',
@@ -18,7 +21,7 @@ export class ShoppingCartInfoComponent {
   maxValue: number = 100;
 
 
-  constructor(private basketItemService: BasketItemService) { }
+  constructor(private cookieService: CookieService, private basketService: BasketService, private shoppingCartService: ShoppingCartService, private basketItemService: BasketItemService) { }
 
   ngOnInit() {
     this.counterValue = this.basketItem.number;
@@ -31,32 +34,39 @@ export class ShoppingCartInfoComponent {
     // Ensure the entered value is within the specified range
     if (this.counterValue < 1) {
       this.counterValue = 1;
-    } else if (this.counterValue > this.maxValue) {
+    }
+    else if (this.counterValue > this.maxValue) {
       this.counterValue = this.maxValue;
-
-      console.log('Input value changed:', this.counterValue);
-      let basketItemUpdate: BasketItemUpdate = {
-        id: this.basketItem.id,
-        number: this.counterValue
-      };
-      this.basketItemService.updateBasketItem(basketItemUpdate).subscribe((x) => {
-        this.calculatedValue = x.number * this.basketItem.limoncello.price;
-        console.log(this.calculatedValue);
-        console.log(x.number);
-      });
     }
 
-    // updateAmount() {
-    //   debugger;
-    //   let basketItemUpdate: BasketItemUpdate = {
-    //     id: this.basketItem.id,
-    //     number: this.counterValue
-    //   };
-    //   this.basketItemService.updateBasketItem(basketItemUpdate).subscribe((x) => {
-    //     this.calculatedValue = x.number * this.basketItem.limoncello.price;
-    //     console.log(this.calculatedValue);
-    //     console.log(x.number);
-    //   });
-    // }
+    console.log('Input value changed:', this.counterValue);
+    let basketItemUpdate: BasketItemUpdate = {
+      id: this.basketItem.id,
+      number: this.counterValue
+    };
+    this.basketItemService.updateBasketItem(basketItemUpdate).subscribe((x) => {
+      this.calculatedValue = x.number * this.basketItem.limoncello.price;
+      this.updateCart();
+      console.log(this.calculatedValue);
+      console.log(x.number);
+    });
+  }
+
+
+  // updateAmount() {
+  //   debugger;
+  //   let basketItemUpdate: BasketItemUpdate = {
+  //     id: this.basketItem.id,
+  //     number: this.counterValue
+  //   };
+  //   this.basketItemService.updateBasketItem(basketItemUpdate).subscribe((x) => {
+  //     this.calculatedValue = x.number * this.basketItem.limoncello.price;
+  //     console.log(this.calculatedValue);
+  //     console.log(x.number);
+  //   });
+  // }
+
+  updateCart(): void {
+    this.shoppingCartService.updateItemCount();
   }
 }

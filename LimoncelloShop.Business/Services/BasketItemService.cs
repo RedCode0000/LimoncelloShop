@@ -64,7 +64,7 @@ namespace LimoncelloShop.Business.Services
                 else
                 {
                     //Getting basket by cookie
-                    var basketFromCookie = _basketService.GetBasketByCookie(basketItem.Basket.Cookie);
+                    var basketFromCookie = _basketService.GetBasketByCookie(false, basketItem.Basket.Cookie);
 
                     if (basketFromCookie != null)
                     {

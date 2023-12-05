@@ -46,18 +46,26 @@ namespace LimoncelloShop.Api.Controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
-        public IActionResult GetBasket(int id)
+        public IActionResult GetBasket(string? key)
         {
             try
             {
-                _basketService.GetBasket(id);
-                return Ok();
+                bool hasRole = User.IsInRole(UserRoles.User) && User.IsInRole(UserRoles.Admin);
+                if (hasRole)
+                {
+                    string email = User.Identity.Name!;
+                    return Ok(_basketService.GetBasketByCookie(hasRole, key: null, email));
+                }
+                else
+                {
+                    return Ok(_basketService.GetBasketByCookie(hasRole, key, ""));
+                }
             }
             catch (Exception ex)
             {
                 return BadRequest(ex);
             }
+
         }
 
         [HttpDelete]
