@@ -86,6 +86,11 @@ namespace LimoncelloShop.Business.Services
                         && x.Limoncello.Name == basketItem.Limoncello.Name))
                 {
                     await _limoncelloService.EditLimoncello(basketItem.Limoncello, null, basketItem.Number);
+                    var existingBasketItem = GetByName(basketItem.Limoncello.Name);
+                    existingBasketItem.Number += basketItem.Number;
+                    _repository.Update(existingBasketItem);
+                    await _repository.Save();
+
                     return;
                     //throw new ArgumentException("BasketItem cannot have the same basket and limoncelloItem, or basket cannot have different basketItems with same limoncello");
                 }
@@ -178,6 +183,13 @@ namespace LimoncelloShop.Business.Services
                 return null;
 
             return basketItem;
+        }
+
+        private BasketItem GetByName(string name)
+
+        {
+            return _repository.GetAll().Include(x => x.Limoncello).Include(x => x.Basket)
+                .ThenInclude(x => x.User).FirstOrDefault(x => x.Limoncello.Name == name)!;
         }
     }
 }

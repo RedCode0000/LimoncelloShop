@@ -19,7 +19,7 @@ export class AppComponent {
   totalNumber: number = 0;
   hidden: boolean = false;
 
-  constructor(private basketService: BasketService, private shoppingCartService: ShoppingCartService, private router: Router, private cookieService: CookieService, private cookieServiceAPI: CookieServiceAPI) { }
+  constructor(private shoppingCartService: ShoppingCartService, private router: Router, private cookieService: CookieService, private cookieServiceAPI: CookieServiceAPI) { }
 
   ngOnInit(): void {
     // this.cookie_name = this.cookieService.get('name');
@@ -58,7 +58,7 @@ export class AppComponent {
   }
 
   deleteCookie() {
-    this.cookieService.delete('Lemonbro\'s');
+    this.cookieService.delete('Lemonbros');
   }
 
   deleteAll() {
@@ -90,13 +90,16 @@ export class AppComponent {
 
   updateCart(): void {
     this.shoppingCartService.updateItemCount();
-    this.totalNumberObservable.subscribe(x => this.totalNumber = x);
-    if (this.totalNumber > 0) {
-      this.hidden = false;
-    }
-    else {
-      this.hidden = true;
-    }
+    this.totalNumberObservable.subscribe(x => {
+      this.totalNumber = x;
+      if (this.totalNumber > 0) {
+        this.hidden = false;
+      }
+      else {
+        this.hidden = true;
+      }
+    });
+
   }
 }
 

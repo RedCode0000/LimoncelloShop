@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import BasketItem from '../models/basketItem';
 import { BasketItemService } from '../services/basket-item.service';
 import BasketItemUpdate from '../models/basketItemUpdate';
@@ -15,13 +15,15 @@ export class ShoppingCartInfoComponent {
 
   @Input() basketItem!: BasketItem;
 
+  @Output() refresh = new EventEmitter<number>;
+
 
   counterValue: number = 0;
   calculatedValue: number = 0;
   maxValue: number = 100;
 
 
-  constructor(private cookieService: CookieService, private basketService: BasketService, private shoppingCartService: ShoppingCartService, private basketItemService: BasketItemService) { }
+  constructor(private shoppingCartService: ShoppingCartService, private basketItemService: BasketItemService) { }
 
   ngOnInit() {
     this.counterValue = this.basketItem.number;
@@ -46,27 +48,19 @@ export class ShoppingCartInfoComponent {
     };
     this.basketItemService.updateBasketItem(basketItemUpdate).subscribe((x) => {
       this.calculatedValue = x.number * this.basketItem.limoncello.price;
-      this.updateCart();
+      this.shoppingCartService.updateItemCount();
       console.log(this.calculatedValue);
       console.log(x.number);
     });
   }
 
+  deleteBasketItem() {
+    if (!this.basketItem.id)
+      return;
+    this.basketItemService.deleteBasketItem(this.basketItem.id).subscribe({
+      complete: () => this.refresh.emit(0)
+    });
 
-  // updateAmount() {
-  //   debugger;
-  //   let basketItemUpdate: BasketItemUpdate = {
-  //     id: this.basketItem.id,
-  //     number: this.counterValue
-  //   };
-  //   this.basketItemService.updateBasketItem(basketItemUpdate).subscribe((x) => {
-  //     this.calculatedValue = x.number * this.basketItem.limoncello.price;
-  //     console.log(this.calculatedValue);
-  //     console.log(x.number);
-  //   });
-  // }
-
-  updateCart(): void {
-    this.shoppingCartService.updateItemCount();
   }
 }
+

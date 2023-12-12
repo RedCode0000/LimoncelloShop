@@ -19,5 +19,8 @@
                 <td>€{{ calculatedValue | number : '1.2-2' : 'nl'}}</td>
             </tr>
         </table>
+        <button mat-icon-button class="deleteButton" (click)="deleteBasketItem()">
+            <mat-icon>delete</mat-icon>
+        </button>
     </div>
 </div>

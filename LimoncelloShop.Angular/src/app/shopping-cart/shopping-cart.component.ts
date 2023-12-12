@@ -3,6 +3,7 @@ import BasketItem from '../models/basketItem';
 import { BasketItemService } from '../services/basket-item.service';
 import { CookieService } from 'ngx-cookie-service';
 import { ToBasketItem } from '../models/databaseBasketItem';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -12,8 +13,9 @@ import { ToBasketItem } from '../models/databaseBasketItem';
 export class ShoppingCartComponent {
 
   allBasketItems: BasketItem[] = [];
+  foo: number = 0;
 
-  constructor(private basketItemService: BasketItemService, private cookieService: CookieService) { }
+  constructor(private basketItemService: BasketItemService, private cookieService: CookieService, private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit(): void {
     this.getAllItems();
@@ -25,7 +27,13 @@ export class ShoppingCartComponent {
     this.basketItemService.getAllBasketItems(cookieValue).subscribe(
       (x) => {
         this.allBasketItems = x.map(t => ToBasketItem(t));
+        this.shoppingCartService.updateItemCount();
       }
     );
+  }
+
+  refreshShoppingCart(event: any) {
+    this.foo = event;
+    this.getAllItems();
   }
 }

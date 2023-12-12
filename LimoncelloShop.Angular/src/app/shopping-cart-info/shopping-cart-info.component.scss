@@ -15,6 +15,7 @@
 
     .limoncelloInfo {
         width: 450px;
+        position: relative;
         display: flex;
         flex-direction: column;
 
@@ -27,17 +28,10 @@
             }
         }
 
-        .limoncelloName {
-            font-size: 18px;
-            width: 270px;
-            margin-bottom: 5px;
-            padding-bottom: 9px;
-            overflow: auto;
-            white-space: nowrap;
-        }
-
-        .price {
-            padding-left: 20px;
+        .deleteButton {
+            position: absolute;
+            bottom: 0;
+            right: 0;
         }
     }
 }

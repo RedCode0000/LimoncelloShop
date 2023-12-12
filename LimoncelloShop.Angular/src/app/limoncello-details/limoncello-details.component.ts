@@ -5,6 +5,7 @@ import { LimoncelloService } from '../services/limoncello.service';
 import { BasketItemService } from '../services/basket-item.service';
 import BasketItem from '../models/basketItemCreate';
 import { CookieService } from 'ngx-cookie-service';
+import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
   selector: 'app-limoncello-details',
@@ -15,16 +16,13 @@ export class LimoncelloDetailsComponent implements OnInit {
 
   @Input() limoncello!: Limoncello;
 
-  // export default interface BasketItem {
+  amount: number = 1;
+  totalNumberObservable = this.shoppingCartService.itemCount$;
 
-  //   id: number;
-  //   nameOfLimoncello: string;
-  //   basketId: number;
-  //   number: number;
-  //   cookie?: string;
+
 
   constructor(private route: ActivatedRoute, private router: Router, private limoncelloService: LimoncelloService,
-    private basketItemService: BasketItemService, private cookieService: CookieService) { };
+    private basketItemService: BasketItemService, private cookieService: CookieService, private shoppingCartService: ShoppingCartService) { };
 
 
   ngOnInit(): void {
@@ -56,13 +54,14 @@ export class LimoncelloDetailsComponent implements OnInit {
     var basketItem: BasketItem = {
       id: 0,
       nameOfLimoncello: this.limoncello.name,
-      number: 0,
+      number: this.amount,
       cookie: cookieValue
     }
     this.basketItemService.createBasketItem(basketItem).subscribe({
       next: () => {
         window.alert('Item(s) put in shoppingcart');
         this.router.navigateByUrl('shoppingcart');
+        this.shoppingCartService.updateItemCount();
       },
       error: (error) => {
         console.log("Error!!!!!!", error);

@@ -1,8 +1,9 @@
 <div class="flex">
     <h1>Winkelmand</h1>
+    <p *ngIf="allBasketItems.length === 0">Er zitten geen producten in de winkelmand.</p>
     <ul>
         <li *ngFor="let basketItemEntity of allBasketItems">
-            <app-shopping-cart-info [basketItem]="basketItemEntity" />
+            <app-shopping-cart-info [basketItem]="basketItemEntity" (refresh)="refreshShoppingCart($event)" />
         </li>
 
     </ul>
