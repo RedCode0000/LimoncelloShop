@@ -1,8 +1,8 @@
 .flex {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 h1 {
@@ -20,16 +20,24 @@ ul {
     list-style: none;
     flex-direction: column;
     align-items: center;
-    width: 60%;
     /* Change width to 100% to occupy the entire available space */
 
     li {
         width: 600px;
         height: 150px;
         border-style: solid;
-        margin: 10px;
+        margin-bottom: 10px;
         box-sizing: border-box;
         /* Include padding and borders in the width calculation */
 
     }
+}
+
+.total {
+    width: 15%;
+    height: 200px;
+    border-style: solid;
+    margin: 10px;
+    padding: 0;
+    box-sizing: border-box;
 }

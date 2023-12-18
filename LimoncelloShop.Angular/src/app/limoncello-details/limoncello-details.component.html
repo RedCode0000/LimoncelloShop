@@ -11,8 +11,8 @@
             <div class="flex2">
                 <button class="order" (click)="createBasketItem()">Bestellen</button>
                 <span class="example-spacer2"></span>
-                <input type="number" id="counter" size="8" min="1" max="50" step="1" placeholder="1" inputmode="numeric"
-                    autocomplete="off" value="1" [(ngModel)]="amount">
+                <input type="number" id="counter" size="8" min="1" step="1" placeholder="1" inputmode="numeric"
+                    autocomplete="off" value="1" [(ngModel)]="amount" (change)="enforceMaxValue()">
                 <span class="example-spacer2"></span>
                 <button class="backButton" [routerLink]="['/limoncello']">Terug</button>
             </div>

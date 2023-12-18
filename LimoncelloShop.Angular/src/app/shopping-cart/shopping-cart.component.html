@@ -1,10 +1,15 @@
+<h1>Winkelmand</h1>
 <div class="flex">
-    <h1>Winkelmand</h1>
+
     <p *ngIf="allBasketItems.length === 0">Er zitten geen producten in de winkelmand.</p>
     <ul>
         <li *ngFor="let basketItemEntity of allBasketItems">
-            <app-shopping-cart-info [basketItem]="basketItemEntity" (refresh)="refreshShoppingCart($event)" />
+            <app-shopping-cart-info [basketItem]="basketItemEntity" (updateTotalCost)="totalCostChanged($event)" />
         </li>
 
     </ul>
+    <div *ngIf="allBasketItems.length !== 0" class="total">
+        <h2>Total:</h2>
+        <h3>€{{ total | number : '1.2-2' : 'nl'}}</h3>
+    </div>
 </div>

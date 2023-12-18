@@ -70,6 +70,12 @@ export class LimoncelloDetailsComponent implements OnInit {
 
   }
 
+  enforceMaxValue() {
+    if (this.amount > this.limoncello.stock) {
+      this.amount = this.limoncello.stock;
+    }
+  }
+
 }
 
 
